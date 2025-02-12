@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Product from './Product';
-import { addToLS, getStoreData} from '../utilities/LS';
+import { addToLS, getStoreData, removeFromLS} from '../utilities/LS';
 import Cart from './Cart';
 
 const Products = () => {
@@ -37,6 +37,11 @@ const Products = () => {
         })
     }
 
+    const cancelHandle = (product) => {
+        setCart(prev=> prev.filter(value=>value.id!==product.id))
+        removeFromLS(product.id);
+    }
+
     return (
         <div className='w-100 container-fluid bg-danger py-1 d-grid'>
             <div className='row gap-5 justify-content-center'>
@@ -47,7 +52,7 @@ const Products = () => {
                          index={index} 
                          product={product}
                          clickHandle ={()=>addToClickHandler(product)}
-                         cancelHandle={``}
+                         cancelHandle={()=>cancelHandle (product)}
                           />
                     )))}
                 </div>

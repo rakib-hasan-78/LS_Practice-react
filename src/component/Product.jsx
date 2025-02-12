@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 
-const Product = ({product, clickHandle}) => {
+
+const Product = ({product, clickHandle, cancelHandle}) => {
     const {name, image, price, id } = product;
 
     return (
@@ -15,14 +16,16 @@ const Product = ({product, clickHandle}) => {
                 <h4 className='fs-5 text-success text-uppercase fw-bolder'>{name}</h4>
                 <p className='text-info fw-bolder text-uppercase'>price : $ {price}</p>
                 <button type='button' onClick={clickHandle}  className='btn btn-info my-2 mb-4 w-75'>add to cart</button>
+                <button className='btn btn-danger mb-4 w-75' onClick={cancelHandle}  >remove Product</button>
             </div>
         </div>
     );
 };
 
 Product.propTypes = {
-    product: PropTypes.string.isRequired,
+    product: PropTypes.object.isRequired,
     clickHandle: PropTypes.func.isRequired,
+    cancelHandle: PropTypes.func.isRequired,
 }
 
 export default Product; 

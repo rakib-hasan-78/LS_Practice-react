@@ -40,9 +40,9 @@ const addToLS = id=>{
 
 const removeFromLS = id =>{
     const cart = getStoreData();
-    const remainedData= cart.filter(c=> c.id !== id);
-    const finalState = saveToLS(remainedData);
-    return finalState;
+    const remainedData= cart.filter(c=> c !== id);
+    saveToLS(remainedData);
+
 } 
 
 export {getStoreData, addToLS, removeFromLS}
